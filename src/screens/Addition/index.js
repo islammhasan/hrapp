@@ -7,105 +7,102 @@ import {strings} from '../../strings';
 import {styles} from './styles';
 
 export const Addition = ({navigation}) => {
-  const [fullname, setFullname] = useState('');
-  const [email, setEmail] = useState('');
-  const [phone, setPhone] = useState('');
-  const [position, setPosition] = useState('');
+  const dispatch = useDispatch();
+  const [candidate, setCandidate] = useState({
+    fullname: '',
+    email: '',
+    phone: '',
+    position: '',
+  });
   const [error, setError] = useState({
-    fullname: false,
-    email: false,
-    phone: false,
-    position: false,
+    fullname: null,
+    email: null,
+    phone: null,
+    position: null,
   });
 
-  const errorsInit = {
-    fullname: false,
-    email: false,
-    phone: false,
-    position: false,
-  };
-
-  const dispatch = useDispatch();
-
-  const candidate = {
-    fullname,
-    email,
-    phone,
-    position,
-  };
-
-  console.log(candidate);
-
   const validation = {
-    fullname: fullname === '' || fullname.length < 2,
-    email: !String(email)
+    fullname: Boolean(candidate.full) || candidate.fullname.length < 2,
+    email: !String(candidate.email)
       .toLowerCase()
       .match(
         /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
       ),
-    phone: phone === '' || phone.length < 2,
-    position: position === '' || position.length < 2,
+    phone: candidate.phone === '' || candidate.phone.length < 2,
+    position: candidate.position === '' || candidate.position.length < 2,
+  };
+
+  const validate = () => {
+    let errors = {};
+    if (validation.fullname)
+      errors.fullname = '* Full Name should have 2 characters at least';
+    if (validation.email) errors.email = '* Invalid email';
+    if (validation.phone) errors.phone = '* Invalid phone number';
+    if (validation.position) errors.position = '* Invalid input';
+
+    return errors;
   };
 
   const addCandidate = () => {
-    switch (true) {
-      case validation.fullname:
-        setError({
-          ...error,
-          fullname: '* Full Name should have 2 characters at least',
-        });
-        break;
-      case validation.email:
-        setError({...error, email: '* Invalid email'});
-        break;
-      case validation.phone:
-        setError({...error, phone: '* Invalid phone number'});
-        break;
-      case validation.position:
-        setError({...error, position: '* Invalid input'});
-        break;
-      default: {
-        setError(errorsInit);
-        dispatch(insertCandidate(candidate));
-        navigation.navigate('CandidatesList');
-      }
+    const errors = validate();
+    console.log('erros from validate==>', errors);
+    if (Object.keys(errors).length) {
+      setError(errors);
+    } else {
+      setError({});
+      dispatch(insertCandidate(candidate));
+      setCandidate({
+        fullname: '',
+        email: '',
+        phone: '',
+        position: '',
+      });
+      navigation.navigate('CandidatesList');
     }
+  };
+
+  const onCandidatesListPress = () => {
+    navigation.navigate('CandidatesList');
+    setError({});
   };
 
   return (
     <Container style={styles.container}>
       <Text style={styles.title}>Candidate Info</Text>
       <PrimaryInput
-        value={fullname}
+        value={candidate.fullname}
         onChangeText={fullname => {
-          setFullname(fullname);
-          setError({...error, fullname: false});
+          setCandidate({...candidate, fullname});
+          setError({...error, fullname: null});
         }}
         error={error.fullname}
         placeholder="Full Name"
       />
       <PrimaryInput
+        value={candidate.email}
         onChangeText={email => {
-          setEmail(email);
-          setError({...error, email: false});
+          setCandidate({...candidate, email});
+          setError({...error, email: null});
         }}
         keyboardType={'email-address'}
         error={error.email}
         placeholder="Email"
       />
       <PrimaryInput
+        value={candidate.phone}
         onChangeText={phone => {
-          setPhone(phone);
-          setError({...error, phone: false});
+          setCandidate({...candidate, phone});
+          setError({...error, phone: null});
         }}
         keyboardType={'phone-pad'}
         error={error.phone}
         placeholder="Phone"
       />
       <PrimaryInput
+        value={candidate.position}
         onChangeText={position => {
-          setPosition(position);
-          setError({...error, position: false});
+          setCandidate({...candidate, position});
+          setError({...error, position: null});
         }}
         error={error.position}
         placeholder="Position"
@@ -117,14 +114,10 @@ export const Addition = ({navigation}) => {
       />
       <PrimaryButton
         title={'Candidates List'}
-        onPress={() => navigation.navigate('CandidatesList')}
+        onPress={() => onCandidatesListPress()}
         style={styles.secondaryBtnStyle}
         titleStyle={styles.secondaryBtnTitle}
       />
     </Container>
   );
 };
-
-
-// primary button and input => just input and button
-//

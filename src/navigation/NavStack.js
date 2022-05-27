@@ -9,7 +9,11 @@ export const NavStack = () => {
   return (
     <Stack.Navigator screenOptions={navigationOptions}>
       <Stack.Screen name="Addition" component={Addition} />
-      <Stack.Screen name="CandidatesList" component={CandidatesList} />
+      <Stack.Screen
+        options={{headerShown: true, headerTitle: 'Candidates List'}}
+        name="CandidatesList"
+        component={CandidatesList}
+      />
     </Stack.Navigator>
   );
 };

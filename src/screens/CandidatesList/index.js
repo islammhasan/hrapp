@@ -40,9 +40,9 @@ export const CandidatesList = ({navigation}) => {
 
   return (
     <Container style={styles.container}>
-      <Text style={styles.title}>{strings.candidatesList}</Text>
       {noCandidates ? (
         <>
+          <Text style={styles.title}>{strings.candidatesList}</Text>
           <FlatList
             data={candidates}
             contentContainerStyle={styles.listContainerStyle}
@@ -51,11 +51,6 @@ export const CandidatesList = ({navigation}) => {
             renderItem={renderItem}
             ItemSeparatorComponent={separator}
           />
-          <PrimaryButton
-            title="Add Candidate"
-            style={styles.btnStyle}
-            onPress={() => navigation.navigate('Addition')}
-          />
         </>
       ) : (
         <View style={styles.secondaryContainer}>
@@ -63,7 +58,7 @@ export const CandidatesList = ({navigation}) => {
           <PrimaryButton
             title="Add Candidate"
             style={styles.btnStyle}
-            onPress={() => navigation.navigate('Addition')}
+            onPress={() => navigation.goBack()}
           />
         </View>
       )}

@@ -3,7 +3,6 @@ import {colors} from '../assets/colors';
 
 export const navigationOptions = {
   headerShown: false,
-  headerTitle: null,
   headerBackTitleVisible: false,
   headerTintColor: colors.black,
   headerStyle: {
@@ -11,7 +10,7 @@ export const navigationOptions = {
     borderBottomWidth: 0,
     borderBottomColor: 'transparent',
     shadowColor: 'transparent',
-    backgroundColor: colors.gray,
+    backgroundColor: colors.white,
     shadowRadius: 0,
     shadowOffset: {
       height: 0,
