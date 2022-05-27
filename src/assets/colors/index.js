@@ -1,6 +1,10 @@
 export const colors = {
-    black: '#131313',
-    white: '#e6eaf3',
-    gray: '#1b1b1b'
-  };
-  
+  white: '#FFFFFF',
+  offWhite: '#fcfcfc',
+  gray: '#CCCCCC',
+  black: '#000000',
+  blue: '#257AFD',
+  darkgray: '#333333',
+  red: '#FF0000',
+  subheading: '#777',
+};
