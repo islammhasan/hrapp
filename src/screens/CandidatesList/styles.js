@@ -5,14 +5,6 @@ export const styles = ScaledSheet.create({
   container: {
     backgroundColor: colors.offWhite,
   },
-  title: {
-    fontSize: '20@ms',
-    color: colors.blue,
-    marginVertical: '20@vs',
-    textTransform: 'uppercase',
-    fontWeight: '500',
-    marginStart: '20@s',
-  },
   listContainerStyle: {
     paddingHorizontal: '20@s',
     paddingVertical: '10@vs',

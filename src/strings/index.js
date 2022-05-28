@@ -10,5 +10,4 @@ export const strings = {
   addCandidate: 'Add Candidate',
   required: '* Field required',
   noCandidatesTxt: 'There are no candidates to show',
-  candidatesList: 'Candidates List'
 };

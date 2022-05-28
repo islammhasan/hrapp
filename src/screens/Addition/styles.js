@@ -4,7 +4,12 @@ import {colors} from '../../assets/colors';
 export const styles = ScaledSheet.create({
   container: {
     justifyContent: 'center',
+  },
+  scrollViewStyle: {
     alignItems: 'center',
+    justifyContent: 'center',
+    flexGrow: 1,
+    paddingVertical: 50,
   },
   title: {
     fontSize: '20@ms',

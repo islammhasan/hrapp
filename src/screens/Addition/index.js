@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {Text} from 'react-native';
+import {Text, ScrollView} from 'react-native';
 import {useDispatch} from 'react-redux';
 import {Container, PrimaryButton, PrimaryInput} from '../../components';
 import {insertCandidate} from '../../redux/candidates';
@@ -68,56 +68,60 @@ export const Addition = ({navigation}) => {
 
   return (
     <Container style={styles.container}>
-      <Text style={styles.title}>Candidate Info</Text>
-      <PrimaryInput
-        value={candidate.fullname}
-        onChangeText={fullname => {
-          setCandidate({...candidate, fullname});
-          setError({...error, fullname: null});
-        }}
-        error={error.fullname}
-        placeholder="Full Name"
-      />
-      <PrimaryInput
-        value={candidate.email}
-        onChangeText={email => {
-          setCandidate({...candidate, email});
-          setError({...error, email: null});
-        }}
-        keyboardType={'email-address'}
-        error={error.email}
-        placeholder="Email"
-      />
-      <PrimaryInput
-        value={candidate.phone}
-        onChangeText={phone => {
-          setCandidate({...candidate, phone});
-          setError({...error, phone: null});
-        }}
-        keyboardType={'phone-pad'}
-        error={error.phone}
-        placeholder="Phone"
-      />
-      <PrimaryInput
-        value={candidate.position}
-        onChangeText={position => {
-          setCandidate({...candidate, position});
-          setError({...error, position: null});
-        }}
-        error={error.position}
-        placeholder="Position"
-      />
-      <PrimaryButton
-        onPress={addCandidate}
-        title={strings.addCandidate}
-        style={styles.btnStyle}
-      />
-      <PrimaryButton
-        title={'Candidates List'}
-        onPress={() => onCandidatesListPress()}
-        style={styles.secondaryBtnStyle}
-        titleStyle={styles.secondaryBtnTitle}
-      />
+      <ScrollView
+        contentContainerStyle={styles.scrollViewStyle}
+        showsVerticalScrollIndicator={false}>
+        <Text style={styles.title}>Candidate Info</Text>
+        <PrimaryInput
+          value={candidate.fullname}
+          onChangeText={fullname => {
+            setCandidate({...candidate, fullname});
+            setError({...error, fullname: null});
+          }}
+          error={error.fullname}
+          placeholder="Full Name"
+        />
+        <PrimaryInput
+          value={candidate.email}
+          onChangeText={email => {
+            setCandidate({...candidate, email});
+            setError({...error, email: null});
+          }}
+          keyboardType={'email-address'}
+          error={error.email}
+          placeholder="Email"
+        />
+        <PrimaryInput
+          value={candidate.phone}
+          onChangeText={phone => {
+            setCandidate({...candidate, phone});
+            setError({...error, phone: null});
+          }}
+          keyboardType={'phone-pad'}
+          error={error.phone}
+          placeholder="Phone"
+        />
+        <PrimaryInput
+          value={candidate.position}
+          onChangeText={position => {
+            setCandidate({...candidate, position});
+            setError({...error, position: null});
+          }}
+          error={error.position}
+          placeholder="Position"
+        />
+        <PrimaryButton
+          onPress={addCandidate}
+          title={strings.addCandidate}
+          style={styles.btnStyle}
+        />
+        <PrimaryButton
+          title={'Candidates List'}
+          onPress={() => onCandidatesListPress()}
+          style={styles.secondaryBtnStyle}
+          titleStyle={styles.secondaryBtnTitle}
+        />
+      </ScrollView>
     </Container>
   );
 };

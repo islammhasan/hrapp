@@ -41,17 +41,14 @@ export const CandidatesList = ({navigation}) => {
   return (
     <Container style={styles.container}>
       {noCandidates ? (
-        <>
-          <Text style={styles.title}>{strings.candidatesList}</Text>
-          <FlatList
-            data={candidates}
-            contentContainerStyle={styles.listContainerStyle}
-            showsVerticalScrollIndicator={false}
-            keyExtractor={item => item.id.toString()}
-            renderItem={renderItem}
-            ItemSeparatorComponent={separator}
-          />
-        </>
+        <FlatList
+          data={candidates}
+          contentContainerStyle={styles.listContainerStyle}
+          showsVerticalScrollIndicator={false}
+          keyExtractor={item => item.id.toString()}
+          renderItem={renderItem}
+          ItemSeparatorComponent={separator}
+        />
       ) : (
         <View style={styles.secondaryContainer}>
           <Text style={styles.noCandidatesText}>{strings.noCandidatesTxt}</Text>

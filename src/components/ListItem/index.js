@@ -53,6 +53,7 @@ const styles = ScaledSheet.create({
   headingStyle: {
     fontSize: 16,
     marginTop: 10,
+    color: colors.darkgray,
   },
   subHeadingStyle: {
     fontSize: 16,
@@ -68,7 +69,7 @@ const styles = ScaledSheet.create({
     marginTop: '10@vs',
   },
   btnTitleStyle: {
-    color: 'red',
+    color: colors.red,
     fontSize: '14@ms',
     fontWeight: '400',
   },
