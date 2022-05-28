@@ -45,7 +45,6 @@ export const Addition = ({navigation}) => {
 
   const addCandidate = () => {
     const errors = validate();
-    console.log('erros from validate==>', errors);
     if (Object.keys(errors).length) {
       setError(errors);
     } else {
